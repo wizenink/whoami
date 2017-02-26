@@ -3,10 +3,12 @@ var app = express();
 
 var port = process.env.PORT || 8080;
 
+app.enable('trust proxy');
+
 app.get('/',function(req,res){
     var response = {
-        "ipaddress":req.socket.address().address
-        ,"language":req.get("Accept-Language")
+        "ipaddress":req.ip
+        ,"language":req.get("Accept-Language").match(/(.+),.*/)[1]
         ,"software":req.get("User-Agent").match(/\((.+)\)/)[1]
     }
     res.send(response);
