@@ -5,7 +5,7 @@ var port = process.env.PORT || 8080;
 
 app.get('/',function(req,res){
     var response = {
-        "ipaddress":req.ip
+        "ipaddress":req.socket.address().address
         ,"language":req.get("Accept-Language")
         ,"software":req.get("User-Agent").match(/\((.+)\)/)[1]
     }
